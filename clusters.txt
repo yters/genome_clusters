@@ -1,3 +1,5 @@
-sheep, whale2, whale, mouse
-hippo, donkey
-chimpanzee, human
+hippo, donkey, gibbon2, cobra
+corn, mite, bug
+wallaby, seaslug
+sheep, gibbon, cow, zebrafinch, whale2, dog, chimpanzee, mouse, frog, human, zebrafish, whale, anole, kangarat
+tomato, horseshoecrab, carp, cottonwood, beetle, cabbage

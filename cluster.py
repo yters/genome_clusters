@@ -2,7 +2,7 @@ import sys
 
 def nearest_neighbor_cluster(triplets):
     index = {}
-    for _, a, b in sorted(triplets, reverse=True):
+    for s, a, b in sorted(triplets, reverse=False):
         if not a in index: 
             cluster = index.get(b, set())
             cluster.update([a, b])
@@ -20,11 +20,13 @@ if __name__ == "__main__":
         lookup[uid] = animal
     triplets = []
     for line in sys.stdin:
+        if not '|' in line: continue
         a, b, s = line.split('|')
-        a = a.split('/')[3]
-        b = b.split('/')[3]
-        s = int(s)
-        triplets += [(s, lookup[a], lookup[b])]
+        a = a.split('.')[0]
+        b = b.split('.')[0]
+        s = float(s)
+        #triplets += [(s, lookup[a], lookup[b])]
+        triplets += [(s, a, b)]
     clusters = nearest_neighbor_cluster(triplets)
     for cl in clusters:
         print(', '.join(cl))
