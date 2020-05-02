@@ -1,16 +1,27 @@
 import sys
+from itertools import combinations
 
 def nearest_neighbor_cluster(triplets):
     index = {}
+    neighbs = {}
     for s, a, b in sorted(triplets, reverse=False):
-        if not a in index: 
-            cluster = index.get(b, set())
-            cluster.update([a, b])
-            index[a] = cluster
-        if not b in index: 
+        if s > float(sys.argv[2]): break 
+        if neighbs.get(a, 0) < int(sys.argv[3]): 
+            neighbs[a] = neighbs.get(a, 0) + 1
             cluster = index.get(a, set())
             cluster.update([a, b])
+            cluster.update(index.get(b, set()))
+            index[a] = cluster
+            for i in index.get(b, set()):
+                index[i] = cluster
+        if neighbs.get(b, 0) < int(sys.argv[3]): 
+            neighbs[b] = neighbs.get(b, 0) + 1
+            cluster = index.get(b, set())
+            cluster.update([a, b])
+            cluster.update(index.get(a, set()))
             index[b] = cluster
+            for i in index.get(a, set()):
+                index[i] = cluster
     return set(tuple(cluster) for cluster in index.values())
 
 if __name__ == "__main__":
