@@ -1,8 +1,5 @@
-whale2, dog
-sheep, whale, cow
 cabbage, beetle
-frog, zebrafish
-zebrafinch, wallaby, anole, mouse, kangarat
-hippo, donkey, gibbon2
-tomato, cottonwood, seaslug, horseshoecrab, carp
+sheep, cow, zebrafinch, anole, dog, whale2, whale, mouse, kangarat
 chimpanzee, human, gibbon
+hippo, donkey, gibbon2
+tomato, cottonwood
