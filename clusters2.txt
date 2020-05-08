@@ -1,0 +1,13 @@
+hippo, cobra, gibbon2, donkey
+whale2, whale
+carp, frog, zebrafish
+carrot, datepalm, apple, peach, potato, banana
+wallaby, kangarat
+gorilla, horse, bluewhale, harborseal
+sheep, cow
+chimpanzee, gibbon, human
+corn, mite
+grayseal, finwhale, pine
+zebrafinch, mouse, anole, dog
+rat, blackbat, squirrel, fruitbat
+tomato, cottonwood, seaslug, horseshoecrab, cabbage, beetle

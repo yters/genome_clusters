@@ -1,0 +1,18 @@
+aardvark, anteater
+anole, frog
+pine, cottonwood, datepalm
+tomato, peach, apple, banana
+potato, cabbage, carrot, corn
+beetle, bug, mite
+blackbat, fruitbat
+bluewhale, finwhale, whale, whale2
+carp, horseshoecrab, seaslug, zebrafish
+chimpanzee, gibbon, gibbon2, gorilla, human
+cobra
+zebrafinch
+hippo, cow, donkey, horse
+dog, pig, sheep
+grayseal, harborseal
+platypus
+wallaby
+mouse, rat, squirrel, kangarat

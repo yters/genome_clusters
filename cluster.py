@@ -4,10 +4,13 @@ from itertools import combinations
 def nearest_neighbor_cluster(triplets):
     index = {}
     neighbs = {}
-    for s, a, b in sorted(triplets, reverse=(sys.argv[4] == 'True')):
-        if s > float(sys.argv[2]) and not sys.argv[4] == 'True': break 
-        if s < float(sys.argv[2]) and sys.argv[4] == 'True': break 
+    ordered_triplets = sorted(triplets, reverse=(sys.argv[4] == 'True')) 
+    ordered_triplets = triplets
+    for s, a, b in ordered_triplets:
+        if s > float(sys.argv[2]) and not sys.argv[4] == 'True': continue
+        if s < float(sys.argv[2]) and sys.argv[4] == 'True': continue
         if neighbs.get(a, 0) < int(sys.argv[3]): 
+            #print(s,a,b)
             neighbs[a] = neighbs.get(a, 0) + 1
             cluster = index.get(a, set())
             cluster.update([a, b])
@@ -16,6 +19,7 @@ def nearest_neighbor_cluster(triplets):
             for i in index.get(b, set()):
                 index[i] = cluster
         if neighbs.get(b, 0) < int(sys.argv[3]): 
+            #print(s,a,b)
             neighbs[b] = neighbs.get(b, 0) + 1
             cluster = index.get(b, set())
             cluster.update([a, b])
