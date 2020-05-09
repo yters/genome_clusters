@@ -10,7 +10,8 @@ mv $1.zip tmp/
 cd tmp
 unzip $1.zip
 rm $1.zip
-for fna in `find ./ -name "*.fna"`; do split -b 10M $fna $fna.piece.; rm $fna; done
+for fna in `find ./ -name "*.fna"`; do sed '/[^gatcGATC]/d' $fna >> all.fna; rm $fna; done
+split -b 10M all.fna $fna.piece.
 for piece in `find ./ -name "*.piece.*"`; do java -cp ~/jlzjd.jar com.edwardraff.jlzjd.Main $piece -o $piece.sdbf; rm $piece; done
 touch ~/sdbfs/$1.sdbf
 find ./ -name "*.sdbf" | xargs -I {} cat {} >> ~/sdbfs/$1.sdbf
