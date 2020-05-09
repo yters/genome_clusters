@@ -1,12 +1,12 @@
 import sys
 from math import log
 
-def parse_cluster(lines, whitelist = None):
+def parse_cluster(lines, whitelist):
     clusters = {}
     for line in lines:
         cluster = tuple(set([item.strip() for item in line.strip().split(',')]))
         for item in cluster:
-            if not whitelist or item in whitelist:
+            if item in whitelist:
                 clusters[item] = cluster
     return clusters
 
@@ -14,8 +14,10 @@ def ent(p):
     if p == 0 or p == 1: return 0
     return -p*log(p,2)
 
-gen_clusters = parse_cluster(sys.stdin.read().splitlines())
-whitelist = set([item for cl in gen_clusters for item in cl])
+lines = sys.stdin.read().splitlines()
+items = [item.strip() for line in lines for item in line.split(',')]
+whitelist = set(items)
+gen_clusters = parse_cluster(lines, whitelist)
 ref_clusters = parse_cluster(open(sys.argv[1]).read().splitlines(), whitelist)
 
 H_X = 0
@@ -46,5 +48,7 @@ for gen_cl in set(gen_clusters.values()):
 ref_cnt = sum([len(cl) for cl in ref_clusters])
 gen_cnt = sum([len(cl) for cl in gen_clusters])
 
-NMI = 2*(H_X-H_XlY)/(H_X+H_Y)
+NMI = 0
+if H_X+H_Y > 0:
+    NMI = 2*(H_X-H_XlY)/(H_X+H_Y)
 print(NMI)
