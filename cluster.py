@@ -5,9 +5,12 @@ threshold = float('inf')
 num_neighbs = 1
 def nearest_neighbor_cluster(triplets):
     index = {}
+    for s, a, b in triplets:
+        index[a] = set([a])
+        index[b] = set([b])
     neighbs = {}
     for s, a, b in triplets:
-        if s > float(threshold): continue
+        if s > threshold: continue
         if neighbs.get(a, 0) < num_neighbs: 
             neighbs[a] = neighbs.get(a, 0) + 1
             cluster = index.get(a, set())
@@ -27,8 +30,10 @@ def nearest_neighbor_cluster(triplets):
     return set(tuple(cluster) for cluster in index.values())
 
 if __name__ == "__main__":
-    threshold = float(sys.argv[1])
-    num_neighbs = int(sys.argv[2])
+    if len(sys.argv) > 1:
+        num_neighbs = int(sys.argv[1])
+    if len(sys.argv) > 2:
+        threshold = float(sys.argv[2])
     triplets = []
     for line in sys.stdin:
         if not '|' in line: continue

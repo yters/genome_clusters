@@ -14,11 +14,20 @@ def ent(p):
     if p == 0 or p == 1: return 0
     return -p*log(p,2)
 
+lines = None
+whitelist = None
+
+ref_clusters = None
+with open(sys.argv[1]) as f:
+    lines = f.read().splitlines()
+
+ref_items = [item.strip() for line in lines for item in line.split(',')]
+whitelist = set(ref_items)
+ref_clusters = parse_cluster(lines, whitelist)
+
 lines = sys.stdin.read().splitlines()
-items = [item.strip() for line in lines for item in line.split(',')]
-whitelist = set(items)
+gen_items = [item.strip() for line in lines for item in line.split(',')]
 gen_clusters = parse_cluster(lines, whitelist)
-ref_clusters = parse_cluster(open(sys.argv[1]).read().splitlines(), whitelist)
 
 H_X = 0
 total = len(ref_clusters)
@@ -50,5 +59,6 @@ gen_cnt = sum([len(cl) for cl in gen_clusters])
 
 NMI = 0
 if H_X+H_Y > 0:
-    NMI = 2*(H_X-H_XlY)/(H_X+H_Y)
+    p = len(gen_items)/float(len(ref_items))
+    NMI = p*2*(H_X-H_XlY)/(H_X+H_Y)
 print(NMI)
