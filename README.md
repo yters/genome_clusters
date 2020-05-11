@@ -1,10 +1,10 @@
 To generate clusters from rank based distance
 ```
-cat distances_ranks.txt | sort -n -k 3 -t '|' | python cluster.py 1000000 1
+cat distances_ranks.txt | sort -n -k 3 -t '|' | python cluster.py 1 1000000
 ```
 from LZJS based similarity
 ```
-cat distances.txt | python neg.py | sort -n -k 3 -t '|' | python cluster.py -1900 1
+cat distances.txt | python neg.py | sort -n -k 3 -t '|' | python cluster.py
 ```
 
 The `cluster.py` script reads distance triplets on stdin and the first arg sets the triplet upper rejection threshold and the second arg is the number of nearest neighbors to form a cluster.
